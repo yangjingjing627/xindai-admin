@@ -62,9 +62,24 @@ export const asyncRouterMap = [
   {
     path: '/my',
     component: Layout,
+    redirect: '/my/personInfo',
     name: '我的面板',
     icon: 'icon',
-    children: [{ path: 'personInfo', component: _import('my/personInfo/index'), name: '个人信息' }]
+    children: [
+      { path: 'personInfo', component: _import('my/personInfo/index'), name: '个人信息' },
+      { path: 'modifyPsw', component: _import('my/modifyPsw/index'), name: '修改密码' }
+    ]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/index',
+    name: '用户管理',
+    icon: 'component',
+    children: [
+      { path: 'index', component: _import('user/userInfo/index'), name: '个人信息详情' },
+      { path: 'accountRemainMoney', component: _import('user/userInfo/accountRemainMoney'), name: '账户余额' }
+    ]
   },
 
 /*
