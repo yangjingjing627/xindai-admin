@@ -76,9 +76,10 @@ export const asyncRouterMap = [
     redirect: '/user/index',
     name: '用户管理',
     icon: 'component',
+    // hidden: true,
     children: [
       { path: 'index', component: _import('user/userInfo/index'), name: '个人信息详情' },
-      { path: 'accountRemainMoney', component: _import('user/userInfo/accountRemainMoney'), name: '账户余额' }
+      { path: 'accountRemainMoney', component: _import('user/userInfo/accountRemainMoney'), name: '账户余额', hidden: true }
     ]
   },
 

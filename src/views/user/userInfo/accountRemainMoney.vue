@@ -1,17 +1,6 @@
 <template>
   <div class="p20">
     <h3>基本信息</h3>
-    <!-- <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-      <el-form-item label="真实姓名">
-        <el-input v-model="formLabelAlign.name"></el-input>
-      </el-form-item>
-      <el-form-item label="用户ID">
-        <el-input v-model="formLabelAlign.userId"></el-input>
-      </el-form-item>
-      <el-form-item label="账户余额">
-        <el-input v-model="formLabelAlign.remianAmount"></el-input>
-      </el-form-item>
-    </el-form> -->
     <ul>
       <li class="flexA"><span class="w100">真实姓名：</span><span class="flex1">李雷</span></li>
       <li class="flexA"><span class="w100">用户ID：</span><span class="flex1">11</span></li>
