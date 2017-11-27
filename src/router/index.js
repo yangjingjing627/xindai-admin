@@ -55,6 +55,21 @@ export const asyncRouterMap = [
     noDropdown: true,
     children: [{ path: 'index', component: _import('permission/index'), name: '权限测试页', meta: { role: ['admin'] }}]
   },
+
+/*
+* 本项目的路由设置
+*/
+  {
+    path: '/my',
+    component: Layout,
+    name: '我的面板',
+    icon: 'icon',
+    children: [{ path: 'personInfo', component: _import('my/personInfo/index'), name: '个人信息' }]
+  },
+
+/*
+* 以下是所参考官网的demo
+*/
   {
     path: '/icon',
     component: Layout,
