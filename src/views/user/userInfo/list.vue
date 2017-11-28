@@ -75,7 +75,11 @@
 
       <el-table-column align="center" label="操作" width="200">
         <template scope="scope">
-          <a href="#">查看</a>&nbsp;&nbsp;<a href="#">修改</a>&nbsp;&nbsp;<a href="#">账单</a>&nbsp;&nbsp;<a href="#">信贷记录</a>&nbsp;&nbsp;<a href="#">理财记录</a>
+          <router-link to="/user/info">查看</router-link>
+          <router-link to="/dashboard">修改</router-link>
+          <router-link to="/dashboard">账单</router-link>
+          <router-link to="/user/credit">信贷记录</router-link>
+          <router-link to="/user/money">理财记录</router-link>
           <!-- <el-button size="small" type="success" @click="handleModifyStatus(scope.row,'published')">查看
           </el-button>
           <el-button size="small" type="primary" @click="handleModifyStatus(scope.row,'deleted')">修改
@@ -419,7 +423,7 @@ export default {
     color: #20a0ff;
   }
   a:hover {
-    color: #20a0ff;
+    color: red;
     opacity: 0.4;
     filter:alpha(opacity=40);
   }

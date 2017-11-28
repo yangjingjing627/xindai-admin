@@ -32,7 +32,7 @@
     <el-table-column
       prop="zip"
       label="邮编"
-      width="120">
+      width="">
     </el-table-column>
     <el-table-column
       fixed="right"
@@ -84,7 +84,8 @@
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }]
+        }],
+        listLoading: true
       }
     }
   }
