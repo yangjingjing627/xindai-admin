@@ -32,7 +32,7 @@
     <el-table-column
       prop="zip"
       label="邮编"
-      width="">
+      width="300">
     </el-table-column>
     <el-table-column
       fixed="right"
