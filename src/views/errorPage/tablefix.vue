@@ -1,4 +1,7 @@
 <template>
+	<div id="">
+		
+
   <el-table
     :data="tableData"
     border
@@ -32,25 +35,37 @@
     <el-table-column
       prop="zip"
       label="邮编"
-      width="120">
+      width="300">
     </el-table-column>
     <el-table-column
+    	fixed="right"
+      prop="zip"
+      label="邮编"
+      width="300">
+    </el-table-column>
+    <!--<el-table-column
       fixed="right"
       label="操作"
       width="100">
       <template slot-scope="scope">
+      	hhbnb
         <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
         <el-button type="text" size="small">编辑</el-button>
       </template>
-    </el-table-column>
+    </el-table-column>-->
   </el-table>
+  	<div id="name">
+  		<h2>这是第一标题，有什么不服吗？</h2>
+  	</div>
+	</div>
+  
 </template>
 
 <script>
   export default {
     methods: {
       handleClick(row) {
-        console.log(row);
+        console.log(row)
       }
     },
 
@@ -89,4 +104,12 @@
     }
   }
 </script>
-
+<style type="text/css" lang='scss'>
+	#name{
+		height: 100px;
+		background-color: tan;
+		h2 {
+			color: #F56A00;
+		}
+	}
+</style>
