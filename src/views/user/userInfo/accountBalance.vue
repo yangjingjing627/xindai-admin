@@ -77,7 +77,7 @@
         <template scope="scope">
           <router-link to="/user/info">查看</router-link>
           <router-link to="/dashboard">修改</router-link>
-          <router-link to="/user/accountBalance">账单</router-link>
+          <router-link to="/dashboard">账单</router-link>
           <router-link to="/user/credit">信贷记录</router-link>
           <router-link to="/user/money">理财记录</router-link>
         </template>

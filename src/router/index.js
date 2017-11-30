@@ -80,7 +80,7 @@ export const asyncRouterMap = [
     children: [
       { path: 'list', component: _import('user/userInfo/list'), name: '用户列表' },
       { path: 'info', component: _import('user/userInfo/index'), name: '个人信息详情', hidden: true },
-      { path: 'accountRemainMoney', component: _import('user/userInfo/accountRemainMoney'), name: '账户余额', hidden: true },
+      { path: 'accountBalance', component: _import('user/userInfo/accountBalance'), name: '账户余额', hidden: true },
       { path: 'credit', component: _import('user/userInfo/credit'), name: '信贷记录', hidden: true },
       { path: 'money', component: _import('user/userInfo/money'), name: '理财记录', hidden: true }
     ]
@@ -163,8 +163,8 @@ export const asyncRouterMap = [
     name: '错误页面',
     icon: '404',
     children: [
-      // { path: '401', component: _import('errorPage/401'), name: '401' },
-      { path: '401', component: _import('errorPage/tablefix'), name: '401' },
+      { path: '401', component: _import('errorPage/401'), name: '401' },
+      // { path: '401', component: _import('errorPage/tablefix'), name: '401' },
       { path: '404', component: _import('errorPage/404'), name: '404' }
     ]
   },
