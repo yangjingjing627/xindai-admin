@@ -76,13 +76,14 @@ export const asyncRouterMap = [
     redirect: '/user/list',
     name: '用户管理',
     icon: 'component',
-    // hidden: true,
     children: [
-      { path: 'list', component: _import('user/userInfo/list'), name: '用户列表' },
-      { path: 'info', component: _import('user/userInfo/index'), name: '个人信息详情', hidden: true },
+      { path: 'userlist', component: _import('user/userInfo/list'), name: '用户列表' },
+      { path: 'personInfo', component: _import('user/userInfo/index'), name: '个人信息详情', hidden: true },
       { path: 'accountBalance', component: _import('user/userInfo/accountBalance'), name: '账户余额', hidden: true },
       { path: 'credit', component: _import('user/userInfo/credit'), name: '信贷记录', hidden: true },
-      { path: 'money', component: _import('user/userInfo/money'), name: '理财记录', hidden: true }
+      { path: 'money', component: _import('user/userInfo/money'), name: '理财记录', hidden: true },
+      { path: 'corporation', component: _import('user/corporation/list'), name: '企业列表' },
+      { path: 'corporation_detail', component: _import('user/corporation/corporation_detail'), name: '企业详情', hidden: true }
     ]
   },
 

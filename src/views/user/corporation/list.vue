@@ -1,69 +1,19 @@
 <template>
   <div class="app-container calendar-list-container">
-    <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="标题" v-model="listQuery.title">
-      </el-input>
-      <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.type" placeholder="类型">
-        <el-option v-for="item in  selectIterm" :value="item.value">
-        </el-option>
-      </el-select>
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-    </div>
-
-    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%; overflow: auto;">
-      <el-table-column align="center" label="用户ID" width="80">
+    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 510px; overflow: auto;">
+      <el-table-column align="center" label="机构ID" width="80">
         <template scope="scope">
-          <span>{{scope.row.userId}}</span>
+          <span @click="handleUpdate(scope.row)">{{scope.row.userId}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="手机号" width="130">
+      <el-table-column align="center" label="名称" width="130">
         <template scope="scope">
           <span>{{scope.row.tel}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="实名认证" width="">
+      <el-table-column align="center" label="钱包地址" width="300">
         <template scope="scope">
           <span>{{scope.row.nameAuth}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="身份证" width="140">
-        <template scope="scope">
-          <span>{{scope.row.authCard}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="绑定银行卡" width="100">
-        <template scope="scope">
-          <span>{{scope.row.bandBind}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="钱包地址" width="140">
-        <template scope="scope">
-          <span>{{scope.row.qbAddr}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="账户余额" width="100">
-        <template scope="scope">
-          <span>{{scope.row.remainMoney}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="注册时间" width="120">
-        <template scope="scope">
-          <span>{{scope.row.registerTime}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="用户状态" width="80">
-        <template scope="scope">
-          <span>{{scope.row.userStatus}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column fixed="right" align="center" label="操作" width="200">
-        <template scope="scope">
-          <router-link to="/user/info">查看</router-link>
-          <router-link to="/dashboard">修改</router-link>
-          <router-link to="/user/accountBalance">账单</router-link>
-          <router-link to="/user/credit">信贷记录</router-link>
-          <router-link to="/user/money">理财记录</router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -73,58 +23,6 @@
         :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
-
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-        <el-form-item label="类型">
-          <el-select class="filter-item" v-model="temp.type" placeholder="请选择">
-            <el-option v-for="item in  calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key">
-            </el-option>
-          </el-select>
-        </el-form-item>
-
-        <el-form-item label="状态">
-          <el-select class="filter-item" v-model="temp.status" placeholder="请选择">
-            <el-option v-for="item in  statusOptions" :key="item" :label="item" :value="item">
-            </el-option>
-          </el-select>
-        </el-form-item>
-
-        <el-form-item label="时间">
-          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="选择日期时间">
-          </el-date-picker>
-        </el-form-item>
-
-        <el-form-item label="标题">
-          <el-input v-model="temp.title"></el-input>
-        </el-form-item>
-
-        <el-form-item label="重要性">
-          <el-rate style="margin-top:8px;" v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
-        </el-form-item>
-
-        <el-form-item label="点评">
-          <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="temp.remark">
-          </el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
-        <el-button v-else type="primary" @click="update">确 定</el-button>
-      </div>
-    </el-dialog>
-
-    <el-dialog title="阅读数统计" :visible.sync="dialogPvVisible" size="small">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
-        <el-table-column prop="key" label="渠道"> </el-table-column>
-        <el-table-column prop="pv" label="pv"> </el-table-column>
-      </el-table>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">确 定</el-button>
-      </span>
-    </el-dialog>
-
   </div>
 </template>
 
@@ -133,19 +31,7 @@ import { fetchList, fetchPv } from '@/api/article'
 import waves from '@/directive/waves/index.js' // 水波纹指令
 import { parseTime } from '@/utils'
 
-const calendarTypeOptions = [
-      { key: 'CN', display_name: '中国' },
-      { key: 'US', display_name: '美国' },
-      { key: 'JP', display_name: '日本' },
-      { key: 'EU', display_name: '欧元区' }
-]
-
 // arr to obj
-const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
-  acc[cur.key] = cur.display_name
-  return acc
-}, {})
-
 export default {
   name: 'table_demo',
   directives: {
@@ -155,7 +41,7 @@ export default {
     return {
       listData: [
         {
-          userId: '1',
+          userId: '127362763726726372',
           tel: '13800990034',
           nameAuth: '李雷李雷',
           authCard: '123456789012345671234',
@@ -165,7 +51,7 @@ export default {
           registerTime: '2017-09-09 23:45:12',
           userStatus: '正常'
         }, {
-          userId: '1',
+          userId: '127362763726726372',
           tel: '13800990034',
           nameAuth: '李雷',
           authCard: '123456789012345671234',
@@ -185,7 +71,7 @@ export default {
           registerTime: '2017-09-09 23:45:12',
           userStatus: '正常'
         }, {
-          userId: '1',
+          userId: '127362763726726372',
           tel: '13800990034',
           nameAuth: '李雷',
           authCard: '123456789012345671234',
@@ -195,7 +81,7 @@ export default {
           registerTime: '2017-09-09 23:45:12',
           userStatus: '正常'
         }, {
-          userId: '1',
+          userId: '127362763726726372',
           tel: '13800990034',
           nameAuth: '李雷',
           authCard: '123456789012345671234',
@@ -234,15 +120,8 @@ export default {
         status: 'published'
       },
       importanceOptions: [1, 2, 3],
-      calendarTypeOptions,
-      sortOptions: [{ label: '按ID升序列', key: '+id' }, { label: '按ID降序', key: '-id' }],
-      statusOptions: ['published', 'draft', 'deleted'],
       dialogFormVisible: false,
       dialogStatus: '',
-      textMap: {
-        update: '编辑',
-        create: '创建'
-      },
       dialogPvVisible: false,
       pvData: [],
       showAuditor: false,
@@ -259,7 +138,7 @@ export default {
       return statusMap[status]
     },
     typeFilter(type) {
-      return calendarTypeKeyValue[type]
+      // return calendarTypeKeyValue[type]
     }
   },
   created() {
@@ -307,10 +186,9 @@ export default {
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
     },
-    handleUpdate(row) {
-      this.temp = Object.assign({}, row)
-      this.dialogStatus = 'update'
-      this.dialogFormVisible = true
+    handleUpdate() {
+      const path = '/user/corporation_detail'
+      this.$router.push(path)
     },
     handleDelete(row) {
       this.$notify({

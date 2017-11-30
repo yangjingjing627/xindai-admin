@@ -1,69 +1,35 @@
 <template>
   <div class="app-container calendar-list-container">
-    <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="标题" v-model="listQuery.title">
-      </el-input>
-      <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.type" placeholder="类型">
-        <el-option v-for="item in  selectIterm" :value="item.value">
-        </el-option>
-      </el-select>
-      <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
-    </div>
-
+    <h3 class="mb20">借款记录</h3>
     <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%; overflow: auto;">
-      <el-table-column align="center" label="用户ID" width="80">
+      <el-table-column align="center" label="借款项目" width="80">
         <template scope="scope">
           <span>{{scope.row.userId}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="手机号" width="130">
+      <el-table-column align="center" label="借款编号" width="130">
         <template scope="scope">
           <span>{{scope.row.tel}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="实名认证" width="">
+      <el-table-column align="center" label="申请时间" width="">
         <template scope="scope">
           <span>{{scope.row.nameAuth}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="身份证" width="140">
+      <el-table-column align="center" label="借款周期" width="140">
         <template scope="scope">
           <span>{{scope.row.authCard}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="绑定银行卡" width="100">
+      <el-table-column align="center" label="借款金额" width="100">
         <template scope="scope">
           <span>{{scope.row.bandBind}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="钱包地址" width="140">
+      <el-table-column align="center" label="标的状态" width="140">
         <template scope="scope">
           <span>{{scope.row.qbAddr}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="账户余额" width="100">
-        <template scope="scope">
-          <span>{{scope.row.remainMoney}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="注册时间" width="120">
-        <template scope="scope">
-          <span>{{scope.row.registerTime}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="用户状态" width="80">
-        <template scope="scope">
-          <span>{{scope.row.userStatus}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column fixed="right" align="center" label="操作" width="200">
-        <template scope="scope">
-          <router-link to="/user/info">查看</router-link>
-          <router-link to="/dashboard">修改</router-link>
-          <router-link to="/user/accountBalance">账单</router-link>
-          <router-link to="/user/credit">信贷记录</router-link>
-          <router-link to="/user/money">理财记录</router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -74,7 +40,7 @@
       </el-pagination>
     </div>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <!-- <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
         <el-form-item label="类型">
           <el-select class="filter-item" v-model="temp.type" placeholder="请选择">
@@ -123,8 +89,7 @@
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogPvVisible = false">确 定</el-button>
       </span>
-    </el-dialog>
-
+    </el-dialog> -->
   </div>
 </template>
 
@@ -155,64 +120,27 @@ export default {
     return {
       listData: [
         {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
+          userId: '招小财',
+          tel: '152167267',
+          nameAuth: '2017-09-09 09:09:09',
+          authCard: '60天',
+          bandBind: '12345',
+          qbAddr: '还款中'
         }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
+          userId: '招小财',
+          tel: '152167267',
+          nameAuth: '2017-09-09 09:09:09',
+          authCard: '60天',
+          bandBind: '12345',
+          qbAddr: '还款中'
         }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
+          userId: '招小财',
+          tel: '152167267',
+          nameAuth: '2017-09-09 09:09:09',
+          authCard: '60天',
+          bandBind: '12345',
+          qbAddr: '还款中'
         }
-      ],
-      selectIterm: [
-        { value: '用户ID' },
-        { value: '手机号' },
-        { value: '姓名' },
-        { value: '身份证' },
-        { value: '银行卡号' },
-        { value: '钱包地址' }
       ],
       total: null,
       listLoading: true,
