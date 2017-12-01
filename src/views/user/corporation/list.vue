@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
-    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 510px; overflow: auto;">
-      <el-table-column align="center" label="机构ID" width="80">
+    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 630px; overflow: auto;">
+      <el-table-column align="center" label="机构ID" width="200">
         <template scope="scope">
           <span @click="handleUpdate(scope.row)">{{scope.row.userId}}</span>
         </template>
