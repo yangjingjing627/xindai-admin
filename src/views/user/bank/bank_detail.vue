@@ -1,17 +1,18 @@
 <template>
   <div class="app-container calendar-list-container">
-    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 630px; overflow: auto;">
-      <el-table-column align="center" label="机构ID" width="200" class="pointer">
+    <h3 class="mb20">借款记录</h3>
+    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%; overflow: auto;">
+      <el-table-column align="center" label="借款项目" width="80">
         <template scope="scope">
-          <span @click="handleUpdate(scope.row)">{{scope.row.userId}}</span>
+          <span>{{scope.row.userId}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="名称" width="130">
+      <el-table-column align="center" label="借款编号" width="130">
         <template scope="scope">
           <span>{{scope.row.tel}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="钱包地址" width="300">
+      <el-table-column align="center" label="申请时间" width="">
         <template scope="scope">
           <span>{{scope.row.nameAuth}}</span>
         </template>
@@ -31,7 +32,19 @@ import { fetchList, fetchPv } from '@/api/article'
 import waves from '@/directive/waves/index.js' // 水波纹指令
 import { parseTime } from '@/utils'
 
+const calendarTypeOptions = [
+      { key: 'CN', display_name: '中国' },
+      { key: 'US', display_name: '美国' },
+      { key: 'JP', display_name: '日本' },
+      { key: 'EU', display_name: '欧元区' }
+]
+
 // arr to obj
+const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
+  acc[cur.key] = cur.display_name
+  return acc
+}, {})
+
 export default {
   name: 'table_demo',
   directives: {
@@ -41,64 +54,27 @@ export default {
     return {
       listData: [
         {
-          userId: '127362763726726372',
-          tel: '13800990034',
-          nameAuth: '李雷李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
+          userId: '招小财',
+          tel: '152167267',
+          nameAuth: '2017-09-09 09:09:09',
+          authCard: '60天',
+          bandBind: '12345',
+          qbAddr: '还款中'
         }, {
-          userId: '127362763726726372',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
+          userId: '招小财',
+          tel: '152167267',
+          nameAuth: '2017-09-09 09:09:09',
+          authCard: '60天',
+          bandBind: '12345',
+          qbAddr: '还款中'
         }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '127362763726726372',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '127362763726726372',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
+          userId: '招小财',
+          tel: '152167267',
+          nameAuth: '2017-09-09 09:09:09',
+          authCard: '60天',
+          bandBind: '12345',
+          qbAddr: '还款中'
         }
-      ],
-      selectIterm: [
-        { value: '用户ID' },
-        { value: '手机号' },
-        { value: '姓名' },
-        { value: '身份证' },
-        { value: '银行卡号' },
-        { value: '钱包地址' }
       ],
       total: null,
       listLoading: true,
@@ -120,8 +96,15 @@ export default {
         status: 'published'
       },
       importanceOptions: [1, 2, 3],
+      calendarTypeOptions,
+      sortOptions: [{ label: '按ID升序列', key: '+id' }, { label: '按ID降序', key: '-id' }],
+      statusOptions: ['published', 'draft', 'deleted'],
       dialogFormVisible: false,
       dialogStatus: '',
+      textMap: {
+        update: '编辑',
+        create: '创建'
+      },
       dialogPvVisible: false,
       pvData: [],
       showAuditor: false,
@@ -138,7 +121,7 @@ export default {
       return statusMap[status]
     },
     typeFilter(type) {
-      // return calendarTypeKeyValue[type]
+      return calendarTypeKeyValue[type]
     }
   },
   created() {
@@ -186,9 +169,10 @@ export default {
       this.dialogStatus = 'create'
       this.dialogFormVisible = true
     },
-    handleUpdate() {
-      const path = '/user/corporation_detail'
-      this.$router.push(path)
+    handleUpdate(row) {
+      this.temp = Object.assign({}, row)
+      this.dialogStatus = 'update'
+      this.dialogFormVisible = true
     },
     handleDelete(row) {
       this.$notify({
@@ -277,8 +261,5 @@ export default {
     color: red;
     opacity: 0.4;
     filter:alpha(opacity=40);
-  }
-  .pointer {
-    cursor: pointer;
   }
 </style>

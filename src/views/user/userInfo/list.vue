@@ -57,7 +57,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column fixed="right" align="center" label="操作" width="200">
+      <el-table-column fixed="right" label="操作" width="200">
         <template scope="scope">
           <router-link to="/user/info">查看</router-link>
           <router-link to="/dashboard">修改</router-link>
