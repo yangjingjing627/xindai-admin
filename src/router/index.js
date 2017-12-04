@@ -99,6 +99,16 @@ export const asyncRouterMap = [
       { path: 'add_credit', component: _import('product/add_credit'), name: '增加信贷产品' }
     ]
   },
+  {
+    path: '/deal',
+    component: Layout,
+    redirect: '/deal/list',
+    name: '交易管理',
+    icon: 'component',
+    children: [
+      { path: 'borrow', component: _import('deal/borrow/list'), name: '信贷借款列表' }
+    ]
+  },
 
 /*
 * 以下是所参考官网的demo
