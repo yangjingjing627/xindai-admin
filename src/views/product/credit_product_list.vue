@@ -3,69 +3,90 @@
     <div class="filter-container">
       <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="标题" v-model="listQuery.title">
       </el-input>
-      <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.type" placeholder="类型">
-        <el-option v-for="item in  selectIterm" :value="item.value">
+
+      <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="重要性">
+        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
         </el-option>
       </el-select>
+
+      <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.type" placeholder="类型">
+        <el-option v-for="item in  calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key">
+        </el-option>
+      </el-select>
+
+      <el-select @change='handleFilter' style="width: 120px" class="filter-item" v-model="listQuery.sort" placeholder="排序">
+        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key">
+        </el-option>
+      </el-select>
+
       <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
+      <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
+      <el-button class="filter-item" type="primary" icon="document" @click="handleDownload">导出</el-button>
+      <el-checkbox class="filter-item" @change='tableKey=tableKey+1' v-model="showAuditor">显示审核人</el-checkbox>
     </div>
 
-    <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%; overflow: auto;">
-      <el-table-column align="center" label="用户ID" width="80">
+    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%">
+
+      <el-table-column align="center" label="序号" width="65">
         <template scope="scope">
-          <span>{{scope.row.userId}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="手机号" width="130">
-        <template scope="scope">
-          <span>{{scope.row.tel}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="实名认证" width="">
-        <template scope="scope">
-          <span>{{scope.row.nameAuth}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="身份证" width="140">
-        <template scope="scope">
-          <span>{{scope.row.authCard}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="绑定银行卡" width="100">
-        <template scope="scope">
-          <span>{{scope.row.bandBind}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="钱包地址" width="140">
-        <template scope="scope">
-          <span>{{scope.row.qbAddr}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="账户余额" width="100">
-        <template scope="scope">
-          <span>{{scope.row.remainMoney}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="注册时间" width="120">
-        <template scope="scope">
-          <span>{{scope.row.registerTime}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="用户状态" width="80">
-        <template scope="scope">
-          <span>{{scope.row.userStatus}}</span>
+          <span>{{scope.row.id}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column fixed="right" align="center" label="操作" width="200">
+      <el-table-column width="180px" align="center" label="时间">
         <template scope="scope">
-          <router-link to="/user/info">查看</router-link>
-          <router-link to="/dashboard">修改</router-link>
-          <router-link to="/user/accountBalance">账单</router-link>
-          <router-link to="/user/credit">信贷记录</router-link>
-          <router-link to="/user/money">理财记录</router-link>
+          <span>{{scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
         </template>
       </el-table-column>
+
+      <el-table-column min-width="300px" label="标题">
+        <template scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.title}}</span>
+          <el-tag>{{scope.row.type | typeFilter}}</el-tag>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="110px" align="center" label="作者">
+        <template scope="scope">
+          <span>{{scope.row.author}}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="110px" v-if='showAuditor' align="center" label="审核人">
+        <template scope="scope">
+          <span style='color:red;'>{{scope.row.auditor}}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="80px" label="重要性">
+        <template scope="scope">
+          <icon-svg v-for="n in +scope.row.importance" icon-class="star" class="meta-item__icon" :key="n"></icon-svg>
+        </template>
+      </el-table-column>
+
+      <el-table-column align="center" label="阅读数" width="95">
+        <template scope="scope">
+          <span class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column class-name="status-col" label="状态" width="90">
+        <template scope="scope">
+          <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
+        </template>
+      </el-table-column>
+
+      <el-table-column align="center" label="操作" width="150">
+        <template scope="scope">
+          <el-button v-if="scope.row.status!='published'" size="small" type="success" @click="handleModifyStatus(scope.row,'published')">发布
+          </el-button>
+          <el-button v-if="scope.row.status!='draft'" size="small" @click="handleModifyStatus(scope.row,'draft')">草稿
+          </el-button>
+          <el-button v-if="scope.row.status!='deleted'" size="small" type="danger" @click="handleModifyStatus(scope.row,'deleted')">删除
+          </el-button>
+        </template>
+      </el-table-column>
+
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
@@ -153,67 +174,7 @@ export default {
   },
   data() {
     return {
-      listData: [
-        {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }, {
-          userId: '1',
-          tel: '13800990034',
-          nameAuth: '李雷',
-          authCard: '123456789012345671234',
-          bandBind: '建设银行',
-          qbAddr: 'sdjdjnejfenkfekf',
-          remainMoney: 123323,
-          registerTime: '2017-09-09 23:45:12',
-          userStatus: '正常'
-        }
-      ],
-      selectIterm: [
-        { value: '用户ID' },
-        { value: '手机号' },
-        { value: '姓名' },
-        { value: '身份证' },
-        { value: '银行卡号' },
-        { value: '钱包地址' }
-      ],
+      list: null,
       total: null,
       listLoading: true,
       listQuery: {
@@ -221,7 +182,7 @@ export default {
         limit: 20,
         importance: undefined,
         title: undefined,
-        type: '',
+        type: undefined,
         sort: '+id'
       },
       temp: {
@@ -390,14 +351,3 @@ export default {
   }
 }
 </script>
-<style media="screen" lang='scss'>
-
-  a {
-    color: #20a0ff;
-  }
-  a:hover {
-    color: red;
-    opacity: 0.4;
-    filter:alpha(opacity=40);
-  }
-</style>

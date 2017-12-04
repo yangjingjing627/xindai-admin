@@ -88,6 +88,17 @@ export const asyncRouterMap = [
       { path: 'bank_detail', component: _import('user/bank/bank_detail'), name: '银行详情', hidden: true }
     ]
   },
+  {
+    path: '/product',
+    component: Layout,
+    redirect: '/product/list',
+    name: '产品管理',
+    icon: 'component',
+    children: [
+      { path: 'list', component: _import('product/credit_product_list'), name: '信贷产品列表' },
+      { path: 'add_credit', component: _import('product/add_credit'), name: '增加信贷产品' }
+    ]
+  },
 
 /*
 * 以下是所参考官网的demo
