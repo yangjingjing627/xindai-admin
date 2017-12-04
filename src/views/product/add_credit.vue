@@ -128,15 +128,15 @@
         </el-col>
         <el-col :span="8"></el-col>
       </el-row>
-      <el-form-item label="产品描述">
-        <el-input type="textarea" v-model="form.activityForm" class="h200"></el-input>
-      </el-form-item>
-      <el-form-item label="备注">
+      <el-form-item label="产品描述" class="desc">
         <el-input type="textarea" v-model="form.activityForm"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+      <el-form-item label="备注">
+        <el-input type="textarea" v-model="form.remark"></el-input>
+      </el-form-item>
+      <el-form-item align='center'>
+        <el-button type="primary" @click="onSubmit">保存</el-button>
+        <el-button>关闭</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -156,6 +156,7 @@
           userType: '',
           vouchType: '',
           activityForm: '',
+          remark: '',
           desc: ''
         }
       }
@@ -171,7 +172,7 @@
   .el-textarea__inner {
     width: 80%;
   }
-  .h200 {
-    height: 200px;
+  .desc .el-textarea__inner{
+    height: 150px;
   }
 </style>
