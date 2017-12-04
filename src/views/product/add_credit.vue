@@ -1,5 +1,6 @@
 <template lang="html">
-  <div class="p20">
+  <div class="p20 auto">
+    <h2>基本信息</h2>
     <el-form ref="form" :model="form" label-width="100px">
       <el-row :gutter="40">
         <el-col :span="8">
