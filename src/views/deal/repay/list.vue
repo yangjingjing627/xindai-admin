@@ -9,8 +9,12 @@
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="支付订单号">
-              <el-input v-model="listQuery.payOrderCode"></el-input>
+            <el-form-item label="还款方式">
+              <!-- <el-input v-model="listQuery.payOrderCode"></el-input> -->
+              <el-select clearable class="filter-item" v-model="listQuery.payOrderCode" placeholder="">
+                <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
+                </el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="6">
@@ -207,10 +211,10 @@ import waves from '@/directive/waves/index.js' // 水波纹指令
 import { parseTime } from '@/utils'
 
 const calendarTypeOptions = [
-      { key: 'CN', display_name: '中国' },
-      { key: 'US', display_name: '美国' },
-      { key: 'JP', display_name: '日本' },
-      { key: 'EU', display_name: '欧元区' }
+  { key: 'CN', display_name: '中国' },
+  { key: 'US', display_name: '美国' },
+  { key: 'JP', display_name: '日本' },
+  { key: 'EU', display_name: '欧元区' }
 ]
 
 // arr to obj
@@ -241,7 +245,15 @@ export default {
         markState: '还款中',
         startDate: '',
         endDate: '',
-
+        payType: [
+          {
+            value: '选项1',
+            label: '到期一次性还本付息'
+          }, {
+            value: '选项2',
+            label: '分期还款'
+          }
+        ],
         //
         page: 1,
         limit: 10,

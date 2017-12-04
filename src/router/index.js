@@ -106,7 +106,8 @@ export const asyncRouterMap = [
     name: '交易管理',
     icon: 'component',
     children: [
-      { path: 'borrow', component: _import('deal/borrow/list'), name: '信贷借款列表' }
+      { path: 'borrow', component: _import('deal/borrow/list'), name: '信贷借款列表' },
+      { path: 'repay', component: _import('deal/repay/list'), name: '信贷还款列表' }
     ]
   },
 
