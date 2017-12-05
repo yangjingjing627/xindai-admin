@@ -1,34 +1,40 @@
 <template>
   <div class="app-container calendar-list-container mb50">
+    <h2>新增管理员</h2>
     <div class="filter-container">
-      <el-button class="filter-item" type="primary" v-waves>新增管理员</el-button>
-    </div>
-
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 550px;">
-      <el-table-column width="200" align="center" label="登录名">
-        <template scope="scope">
-          <span>韩某某</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="200" align="center" label="角色">
-        <template scope="scope">
-          <span>运营人员</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="操作" width="150">
-        <template scope="scope">
-          <el-button size="small" type="primary" icon="el-icon-edit" v-waves @click="handleModifyStatus(scope.row)">编辑</el-button>
-          <el-button size="small" type="primary" icon="el-icon-delete" @click="handleModifyStatus(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <div v-show="!listLoading" class="pagination-container">
-      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page"
-        :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
-      </el-pagination>
+      <el-form ref="form" :model="listQuery" label-width="100px">
+        <el-form-item label="用户名">
+          <el-input v-model="listQuery.username"></el-input>
+        </el-form-item>
+          <!-- <el-col :span="6">
+            <el-form-item label="还款方式">
+              <el-select clearable class="filter-item" v-model="listQuery.payOrderCode" placeholder="">
+                <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col> -->
+          <el-form-item
+            prop="email"
+            label="邮箱"
+            :rules="[
+              { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+              { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
+            ]"
+          >
+            <el-input v-model="listQuery.email"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="pass">
+            <el-input type="password" v-model="listQuery.pass" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="确认密码" prop="checkPass">
+            <el-input type="password" v-model="listQuery.checkPass" auto-complete="off"></el-input>
+          </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="">取 消</el-button>
+        <el-button type="primary" @click="update">确 定</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -62,26 +68,10 @@ export default {
       total: null,
       listLoading: true,
       listQuery: {
-        borrowNumber: '13123456789',
-        payOrderCode: '',
-        borrower: '俞敏洪',
-        lenders: '方志敏',
-        borrowId: '13123456789',
+        username: '',
+        pass: '',
+        checkPass: '',
 
-        lendId: '13123456789',
-        applyProduct: '信贷一期',
-        markState: '还款中',
-        startDate: '',
-        endDate: '',
-        payType: [
-          {
-            value: '选项1',
-            label: '到期一次性还本付息'
-          }, {
-            value: '选项2',
-            label: '分期还款'
-          }
-        ],
         //
         page: 1,
         limit: 10,

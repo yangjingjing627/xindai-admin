@@ -10,7 +10,6 @@
           </el-col>
           <el-col :span="6">
             <el-form-item label="还款方式">
-              <!-- <el-input v-model="listQuery.payOrderCode"></el-input> -->
               <el-select clearable class="filter-item" v-model="listQuery.payOrderCode" placeholder="">
                 <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
                 </el-option>

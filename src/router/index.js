@@ -117,7 +117,8 @@ export const asyncRouterMap = [
     name: '系统设置',
     icon: 'component',
     children: [
-      { path: 'admin_user_list', component: _import('setting/admin_user_list/list'), name: '后台用户列表' }
+      { path: 'admin_user_list', component: _import('setting/admin_user_list/list'), name: '后台用户列表' },
+      { path: 'add_admin_user', component: _import('setting/add_admin_user/list'), name: '新增后台人员' }
     ]
   },
 
