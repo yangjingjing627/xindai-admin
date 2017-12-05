@@ -110,6 +110,16 @@ export const asyncRouterMap = [
       { path: 'repay', component: _import('deal/repay/list'), name: '信贷还款列表' }
     ]
   },
+  {
+    path: '/setting',
+    component: Layout,
+    redirect: '/setting/list',
+    name: '系统设置',
+    icon: 'component',
+    children: [
+      { path: 'admin_user_list', component: _import('setting/admin_user_list/list'), name: '后台用户列表' }
+    ]
+  },
 
 /*
 * 以下是所参考官网的demo
