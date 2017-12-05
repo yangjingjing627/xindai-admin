@@ -1,200 +1,34 @@
 <template>
   <div class="app-container calendar-list-container mb50">
     <div class="filter-container">
-      <el-form ref="form" :model="listQuery" label-width="100px">
-        <el-row :gutter="40">
-          <el-col :span="6">
-            <el-form-item label="借款编号">
-              <el-input v-model="listQuery.borrowNumber"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="还款方式">
-              <!-- <el-input v-model="listQuery.payOrderCode"></el-input> -->
-              <el-select clearable class="filter-item" v-model="listQuery.payOrderCode" placeholder="">
-                <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="借款方">
-              <el-input v-model="listQuery.borrower"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="放款方">
-              <el-input v-model="listQuery.lenders"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="40">
-
-          <el-col :span="6">
-            <el-form-item label="借款ID">
-              <el-input v-model="listQuery.borrowId"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="放款ID">
-              <el-input v-model="listQuery.lendId"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="申请产品">
-              <el-input v-model="listQuery.applyProduct"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="标的状态">
-              <!-- <el-input v-model="listQuery.markState"></el-input> -->
-              <el-select clearable class="filter-item" v-model="listQuery.markState" placeholder="">
-                <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="40">
-          <el-col :span="6">
-            <el-form-item label="申请时间">
-              <el-date-picker
-                v-model="listQuery.startDate"
-                 placeholder="请选择申请时间"
-                 format="yyyy-MM-dd HH:mm:ss"
-                 :picker-options="startDateOpt"
-                type="datetime">
-              </el-date-picker>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item label="放款时间">
-              <el-date-picker
-                v-model="listQuery.endDate"
-                 placeholder="请选择放款时间"
-                 format="yyyy-MM-dd HH:mm:ss"
-                 :picker-options="endDateOpt"
-                type="datetime">
-              </el-date-picker>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6" style="height: 1px;"></el-col>
-          <el-col :span="6">
-            <el-form-item>
-              <el-button type="primary" @click="handleFilter">查询</el-button>
-              <el-button @click="cancelFilter">重置</el-button>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
+      <el-button class="filter-item" type="primary" v-waves>新增管理员</el-button>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row >
-
-      <el-table-column align="center" label="借款编号" width="120">
+    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 600px;">
+      <!-- <el-table-column align="center" label="借款编号" width="120">
         <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
-      <el-table-column width="180px" align="center" label="申请产品">
+      <el-table-column width="200" align="center" label="登录名">
         <template scope="scope">
-          <span>信贷业务1</span>
+          <span>韩某某</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" align="center" label="借款方">
+      <el-table-column width="200" align="center" label="角色">
         <template scope="scope">
-          <span>韩梅梅</span>
+          <span>运营人员</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" align="center" label="借款方ID">
+      <el-table-column align="center" label="操作" width="200">
         <template scope="scope">
-          <span>######</span>
+          <el-button size="small" type="primary" icon="el-icon-edit" v-waves @click="handleModifyStatus(scope.row)">编辑</el-button>
+          <el-button size="small" type="primary" icon="el-icon-delete" @click="handleModifyStatus(scope.row)">删除</el-button>
         </template>
       </el-table-column>
-
-      <el-table-column width="100px" align="center" label="放款方">
-        <template scope="scope">
-          <span>工商银行</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="放款方ID">
-        <template scope="scope">
-          <span>######</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="130px" align="center" label="产品利率">
-        <template scope="scope">
-          <span>10.8000%</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="合同金额">
-        <template scope="scope">
-          <span>99</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="借款申请项">
-        <template scope="scope">
-          <span>30</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="实际放款金额">
-        <template scope="scope">
-          <span>99</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="借据期限">
-        <template scope="scope">
-          <span>30天</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="还款方式">
-        <template scope="scope">
-          <span>一次性还本付息</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="100px" align="center" label="标的状态">
-        <template scope="scope">
-          <span>还款中</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="130px" align="center" label="支付订单号">
-        <template scope="scope">
-          <span>#########</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="120px" align="center" label="申请时间">
-        <template scope="scope">
-          <span>2017-09-09 05:09:08</span>
-          <!-- {{scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}')}} -->
-        </template>
-      </el-table-column>
-
-      <el-table-column width="120px" align="center" label="放款时间">
-        <template scope="scope">
-          <span>2017-12-09 05:09:08</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="操作" width="100">
-        <template scope="scope">
-          <el-button size="" type="success" @click="handleModifyStatus(scope.row)">查看
-          </el-button>
-        </template>
-      </el-table-column>
-
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
