@@ -1,40 +1,38 @@
 <template>
   <div class="app-container calendar-list-container mb50">
-    <h2>新增管理员</h2>
+    <h2 class="mb20">新增管理员</h2>
     <div class="filter-container">
-      <el-form ref="form" :model="listQuery" label-width="100px">
-        <el-form-item label="用户名">
-          <el-input v-model="listQuery.username"></el-input>
-        </el-form-item>
-          <!-- <el-col :span="6">
-            <el-form-item label="还款方式">
-              <el-select clearable class="filter-item" v-model="listQuery.payOrderCode" placeholder="">
-                <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
-                </el-option>
-              </el-select>
+      <el-form :model="listQuery" status-icon :rules="rules2" ref="listQuery" label-width="100px">
+        <el-row :gutter="40">
+          <el-col :span="8">
+            <el-form-item label="用户名">
+              <el-input v-model="listQuery.username"></el-input>
             </el-form-item>
-          </el-col> -->
-          <el-form-item
-            prop="email"
-            label="邮箱"
-            :rules="[
-              { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-              { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
-            ]"
-          >
-            <el-input v-model="listQuery.email"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="pass">
-            <el-input type="password" v-model="listQuery.pass" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="确认密码" prop="checkPass">
-            <el-input type="password" v-model="listQuery.checkPass" auto-complete="off"></el-input>
-          </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="8">
+            <el-form-item label="密码" prop="pass">
+              <el-input type="password" v-model="listQuery.pass" auto-complete="off"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="8">
+            <el-form-item label="确认密码" prop="checkPass">
+              <el-input type="password" v-model="listQuery.checkPass" auto-complete="off"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="40">
+          <el-col :span="8">
+            <el-form-item label="" prop="checkPass" align="center">
+              <el-button @click="">取 消</el-button>
+              <el-button type="primary" @click="submitForm('listQuery')">确 定</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="">取 消</el-button>
-        <el-button type="primary" @click="update">确 定</el-button>
-      </div>
     </div>
   </div>
 </template>
@@ -63,6 +61,25 @@ export default {
     waves
   },
   data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'))
+      } else {
+        if (this.ruleForm2.checkPass !== '') {
+          this.$refs.ruleForm2.validateField('checkPass')
+        }
+        callback()
+      }
+    }
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else if (value !== this.ruleForm2.pass) {
+        callback(new Error('两次输入密码不一致!'))
+      } else {
+        callback()
+      }
+    }
     return {
       list: null,
       total: null,
@@ -79,6 +96,14 @@ export default {
         title: undefined,
         type: undefined,
         sort: '+id'
+      },
+      rules2: {
+        pass: [
+          { validator: validatePass, trigger: 'blur' }
+        ],
+        checkPass: [
+          { validator: validatePass2, trigger: 'blur' }
+        ]
       },
       startDateOpt: {
         disabledDate: (time) => {
@@ -138,6 +163,19 @@ export default {
     this.getList()
   },
   methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
+    },
     /*
 
     */
@@ -227,14 +265,15 @@ export default {
       })
     },
     update() {
-      this.temp.timestamp = +this.temp.timestamp
-      for (const v of this.list) {
-        if (v.id === this.temp.id) {
-          const index = this.list.indexOf(v)
-          this.list.splice(index, 1, this.temp)
-          break
-        }
-      }
+      // this.temp.timestamp = +this.temp.timestamp
+      // for (const v of this.list) {
+      //   if (v.id === this.temp.id) {
+      //     const index = this.list.indexOf(v)
+      //     this.list.splice(index, 1, this.temp)
+      //     break
+      //   }
+      // }
+
       this.dialogFormVisible = false
       this.$notify({
         title: '成功',
