@@ -74,4 +74,11 @@
 
 .el-submenu .el-menu-item {
   min-width: 180px!important;
+  &.is-active {
+    color: white;
+    background: #4a4f59;
+    // opacity: 0.1;
+    // filter: alpha(opacity=10);
+    border-right: 3px solid #FF7067;
+  }
 }
