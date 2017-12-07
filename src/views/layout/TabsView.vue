@@ -1,6 +1,6 @@
 <template>
   <div class='tabs-view-container'>
-    <router-link class="tabs-view" v-for="tag in Array.from(visitedViews)" :to="tag.path" :key="tag.path">
+    <router-link class="tabs-view" :class="isActive(tag.path)?'primary-bg':''" v-for="tag in Array.from(visitedViews)" :to="tag.path" :key="tag.path">
       <el-tag :closable="true" :type="isActive(tag.path)?'primary':''" @close='closeViewTabs(tag,$event)'>
         {{tag.name}}
       </el-tag>
@@ -56,8 +56,27 @@ export default {
     display: inline-block;
     vertical-align: top;
     margin-left: 10px;
-    .tabs-view {
-      margin-left: 10px;
+  }
+  .tabs-view {
+    background: #4A4F59;
+    display: block;
+    float: left;
+    border-right: 2px solid black;
+    .el-tag {
+      width: 120px;
+      text-align: center;
+      background: none;
+      border: none;
+      color: #a4a4a4;
+      font-size: 14px;
+    }
+  }
+  .primary-bg {
+    background-color: white;
+    border-right: none;
+    .el-tag--primary {
+      border-color: none;
+      color: #333;
     }
   }
 </style>
