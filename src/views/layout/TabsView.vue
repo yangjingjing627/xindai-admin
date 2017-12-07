@@ -55,7 +55,7 @@ export default {
   .tabs-view-container {
     display: inline-block;
     vertical-align: top;
-    margin-left: 10px;
+    // margin-left: 10px;
   }
   .tabs-view {
     background: #4A4F59;
