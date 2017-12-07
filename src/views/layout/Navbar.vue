@@ -79,6 +79,7 @@ export default {
 					height: 50px;
 					float: left;
 					padding: 0 10px;
+					background-color: #4a4f59;
 			}
 			.errLog-container {
 					display: inline-block;
