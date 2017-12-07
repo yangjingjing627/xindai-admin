@@ -40,10 +40,14 @@ export default {
     display: inline-block;
     font-size: 14px;
     line-height: 50px;
-    margin-left: 10px;
+    background-color: #4a4f59;
+    padding: 0 20px;
     .no-redirect {
       color: #97a8be;
       cursor: text;
     }
+  }
+  .el-breadcrumb__item__inner, .el-breadcrumb__item__inner a {
+    color: #97a8be;
   }
 </style>
