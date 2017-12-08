@@ -22,9 +22,9 @@
       <el-col :span="6"><div class="grid-content bg-purple">角色</div></el-col>
     </el-row>
     <el-row :gutter="20" class="g3 f16">
-      <el-col :span="6"><div class="grid-content bg-purple">小燕子</div></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple">1122334@163.com</div></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple">admin</div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple">{{ form.username }}小燕子</div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple">{{ form.email }}1122334@163.com</div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple">{{ form.role }}admin</div></el-col>
     </el-row>
   </div>
   </template>

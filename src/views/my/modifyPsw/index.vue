@@ -1,7 +1,7 @@
 <template>
   <div class="p20">
     <h3>修改密码</h3>
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form ref="form" :model="form" label-position="top" label-width="80px">
       <el-form-item label="旧密码">
         <el-input
         placeholder="请输入旧密码"
