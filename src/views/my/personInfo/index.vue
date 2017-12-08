@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h3 class="pb20 border-bottom">个人信息</h3>
+    <h3 class="pb20 border-bottom f18">个人信息</h3>
     <!-- <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="用户名">
         <el-input
