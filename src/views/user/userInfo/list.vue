@@ -59,7 +59,7 @@
 
       <el-table-column fixed="right" align="center" label="操作" width="200">
         <template scope="scope">
-          <router-link to="/user/info">查看</router-link>
+          <router-link to="/user/personInfo">查看</router-link>
           <router-link to="/dashboard">修改</router-link>
           <router-link to="/user/accountBalance">账单</router-link>
           <router-link to="/user/credit">信贷记录</router-link>
@@ -167,7 +167,7 @@ export default {
         }, {
           userId: '1',
           tel: '13800990034',
-          nameAuth: '李雷',
+          nameAuth: '张云',
           authCard: '123456789012345671234',
           bandBind: '建设银行',
           qbAddr: 'sdjdjnejfenkfekf',
