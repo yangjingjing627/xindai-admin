@@ -451,3 +451,8 @@ export default {
   }
 }
 </script>
+<style media="screen">
+  .el-row {
+    margin-bottom: 0;
+  }
+</style>

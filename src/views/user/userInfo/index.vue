@@ -1,6 +1,6 @@
 <template>
   <div class="app-container calendar-list-container">
-    <el-row type="flex" class="border-bottom row-bg" justify="space-between" :gutter='50' style="margin: 0;">
+    <el-row type="flex" class="border-bottom row-bg" justify="space-between" :gutter='50' style="margin: 0; min-width: 1100px;">
       <el-col :span="4">
         <div class="w-100 tc flex-center flex-column grid-content bg-purple">
           <div class="img-box border">

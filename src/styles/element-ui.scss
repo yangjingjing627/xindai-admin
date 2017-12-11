@@ -80,3 +80,14 @@
      }
    }
  }
+
+/*
+* 重置分页页码active的background-color
+*/
+.el-pager li:not(.active):hover {
+  color: #FA5559;
+}
+.el-pager li.active {
+    border-color: #FA5559;
+    background-color: #FA5559;
+}
