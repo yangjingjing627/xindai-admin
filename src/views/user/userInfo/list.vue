@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="标题" v-model="listQuery.title">
       </el-input>
-      <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.type" placeholder="类型">
+      <el-select clearable class="filter-item" style="" v-model="listQuery.type" placeholder="类型">
         <el-option v-for="item in  selectIterm" :value="item.value">
         </el-option>
       </el-select>

@@ -85,7 +85,9 @@ export const asyncRouterMap = [
       { path: 'corporation', component: _import('user/corporation/list'), name: '企业列表' },
       { path: 'corporation_detail', component: _import('user/corporation/corporation_detail'), name: '企业详情', hidden: true },
       { path: 'bank', component: _import('user/bank/list'), name: '银行列表' },
-      { path: 'bank_detail', component: _import('user/bank/bank_detail'), name: '银行详情', hidden: true }
+      { path: 'bank_detail', component: _import('user/bank/bank_detail'), name: '银行详情', hidden: true },
+      //
+      { path: 'xing', component: _import('user/userInfo/xing'), name: '**组件' }
     ]
   },
   {
