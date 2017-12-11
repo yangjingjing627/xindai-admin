@@ -1,6 +1,89 @@
 <template>
   <div class="app-container calendar-list-container">
-
+    <el-row type="flex" class="border-bottom row-bg" justify="space-between" :gutter='50' style="margin: 0;">
+      <el-col :span="4">
+        <div class="w-100 tc flex-center flex-column grid-content bg-purple">
+          <div class="img-box border">
+            <img src="" alt="">
+          </div>
+          <p class="g3 f16 mt20">约翰森</p>
+        </div>
+      </el-col>
+      <el-col :span="10" class="border-right">
+        <div class="h-50">
+          <el-row type="flex" class="h-100 border-bottom">
+            <el-col :span="8" class="h-100 flex-center">
+              <div class="w-100 tl">
+                <p class="g9 f14 mb14">用户ID</p>
+                <p class="g3 f16">笑傲江湖</p>
+              </div>
+            </el-col>
+            <el-col :span="8" class="h-100 flex-center">
+              <div class="w-100 tl border-right">
+                <p class="g9 f14 mb14">真实姓名</p>
+                <p class="g3 f16">张飞</p>
+              </div>
+            </el-col>
+            <el-col :span="8" class="h-100 flex-center">
+              <div class="w-100 tl">
+                <p class="g9 f14 mb14">手机号</p>
+                <p class="g3 f16">13677898876</p>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="h-50">
+          <el-row type="flex" class="h-100">
+            <el-col :span="12" class="h-100 flex-center">
+              <div class="w-100 tl border-right">
+                <p class="g9 f14 mb14">身份证</p>
+                <p class="g3 f16">420821199206305032</p>
+              </div>
+            </el-col>
+            <el-col :span="12" class="h-100 flex-center">
+              <div class="w-100 tl">
+                <p class="g9 f14 mb14">注册时间</p>
+                <p class="g3 f16">2017-09-19 05:48:40</p>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </el-col>
+      <el-col :span="10">
+        <div class="h-50">
+          <el-row type="flex" class="h-100 border-bottom">
+            <el-col :span="12" class="h-100 flex-center">
+              <div class="w-100 tl border-right">
+                <p class="g9 f14 mb14">钱包昵称</p>
+                <p class="g3 f16">小飞</p>
+              </div>
+            </el-col>
+            <el-col :span="12" class="h-100 flex-center">
+              <div class="w-100 tl">
+                <p class="g9 f14 mb14">所属银行</p>
+                <p class="g3 f16">招行</p>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="h-50">
+          <el-row type="flex" class="h-100">
+            <el-col :span="16" class="h-100 flex-center">
+              <div class="w-100 tl border-right">
+                <p class="g9 f14 mb14">钱包地址</p>
+                <p class="g3 f16">1G1m8pS8RcBtdgRq1ohCM</p>
+              </div>
+            </el-col>
+            <el-col :span="8" class="h-100 flex-center">
+              <div class="w-100 tl">
+                <p class="g9 f14 mb14">钱包余额</p>
+                <p class="g3 f16">30000</p>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </el-col>
+    </el-row>
     <h3>银行卡</h3>
     <el-table :data="bank_info" border fit highlight-current-row style="width: 100%; overflow: auto;">
       <el-table-column align="center" label="序号" width="80">
@@ -22,7 +105,7 @@
 
     <h3>操作日志</h3>
     <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%; overflow: auto;">
-      <el-table-column align="center" label="时间" width="150">
+      <el-table-column align="center" label="时间" width="180">
         <template scope="scope">
           <span>{{scope.row.registerTime}}</span>
         </template>
@@ -81,6 +164,10 @@ export default {
           bank_number: '6228480402564890018'
         }, {
           index: 2,
+          bank_name: '招商银行',
+          bank_number: '6228480402564890018'
+        }, {
+          index: 3,
           bank_name: '招商银行',
           bank_number: '6228480402564890018'
         }
@@ -266,13 +353,51 @@ export default {
 }
 </script>
 <style media="screen" lang='scss'>
-
-  a {
-    color: #20a0ff;
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
-  a:hover {
-    color: red;
-    opacity: 0.4;
-    filter:alpha(opacity=40);
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    min-height: 200px;
+  }
+  .row-bg {
+    padding: 20px 0;
+  }
+  .mb14 {
+    margin-bottom: 14px;
+  }
+  .tl {
+    text-align: left;
+    padding-left: 40px;
+    box-sizing: border-box;
+  }
+  .img-box {
+    width: 70px;
+    height: 70px;
+    background: tan;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .mt20 {
+    margin-top: 20px;
+  }
+  .flex-column {
+    flex-direction: column;
   }
 </style>
