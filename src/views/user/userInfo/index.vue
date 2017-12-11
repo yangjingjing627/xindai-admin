@@ -13,7 +13,7 @@
         <div class="h-50">
           <el-row type="flex" class="h-100 border-bottom">
             <el-col :span="8" class="h-100 flex-center">
-              <div class="w-100 tl">
+              <div class="w-100 tl border-right">
                 <p class="g9 f14 mb14">用户ID</p>
                 <p class="g3 f16">笑傲江湖</p>
               </div>
@@ -77,7 +77,10 @@
             <el-col :span="8" class="h-100 flex-center">
               <div class="w-100 tl">
                 <p class="g9 f14 mb14">钱包余额</p>
-                <p class="g3 f16">30000</p>
+                <p class="g3 f16">
+                  <span>30000 </span>
+                  <router-link to="/user/personInfo" class="blue f14">查看详情</router-link>
+                </p>
               </div>
             </el-col>
           </el-row>
