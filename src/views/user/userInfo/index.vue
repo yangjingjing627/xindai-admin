@@ -79,7 +79,7 @@
                 <p class="g9 f14 mb14">钱包余额</p>
                 <p class="g3 f16">
                   <span>30000 </span>
-                  <router-link to="/user/personInfo" class="blue f14">查看详情</router-link>
+                  <router-link to="/user/balance_detail" class="blue f14">查看详情</router-link>
                 </p>
               </div>
             </el-col>

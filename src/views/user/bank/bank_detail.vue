@@ -2,12 +2,12 @@
   <div class="app-container calendar-list-container">
     <h3 class="mb20">借款记录</h3>
     <el-table :key='tableKey' :data="listData" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 100%; overflow: auto;">
-      <el-table-column align="center" label="借款项目" width="80">
+      <el-table-column align="center" label="借款项目" width="120">
         <template scope="scope">
           <span>{{scope.row.userId}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="借款编号" width="130">
+      <el-table-column align="center" label="借款编号" width="120">
         <template scope="scope">
           <span>{{scope.row.tel}}</span>
         </template>
