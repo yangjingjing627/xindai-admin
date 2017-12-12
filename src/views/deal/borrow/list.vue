@@ -25,7 +25,6 @@
           </el-col>
         </el-row>
         <el-row :gutter="40">
-
           <el-col :span="6">
             <el-form-item label="借款ID">
               <el-input v-model="listQuery.borrowId"></el-input>
