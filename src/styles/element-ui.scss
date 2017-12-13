@@ -91,3 +91,12 @@
     border-color: #FA5559;
     background-color: #FA5559;
 }
+.el-select-dropdown__item.selected {
+  background-color: #FA5559;
+}
+.el-select-dropdown__item.selected.hover {
+  background-color: #FA5559;
+}
+// .el-icon-arrow-right:before {
+//     content: "\E602";
+// }

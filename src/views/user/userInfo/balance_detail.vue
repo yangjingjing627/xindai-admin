@@ -2,7 +2,7 @@
   <div class="app-container calendar-list-container">
     <div class="border-bottom pb12">
       <h3 class="">基本信息</h3>
-      <el-row :gutter="20" class="g9 f14">
+      <el-row :gutter="20" class="g9 f14 mb20">
         <el-col :span="6"><div>真实姓名</div></el-col>
         <el-col :span="6"><div>用户ID</div></el-col>
         <el-col :span="6"><div>账户余额</div></el-col>
