@@ -112,6 +112,7 @@ export const asyncRouterMap = [
     icon: 'component',
     children: [
       { path: 'borrow', component: _import('deal/borrow/list'), name: '信贷借款列表' },
+      { path: 'borrow_datail', component: _import('deal/borrow/detail'), name: '信贷借款详情' },
       { path: 'repay', component: _import('deal/repay/list'), name: '信贷还款列表' }
     ]
   },

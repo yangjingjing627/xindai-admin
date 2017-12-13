@@ -185,11 +185,13 @@
 
       <el-table-column align="center" label="操作" width="100">
         <template scope="scope">
-          <el-button size="" type="success" @click="handleModifyStatus(scope.row)">查看
-          </el-button>
+          <!-- <el-button size="" type="success" @click="handleModifyStatus(scope.row)">查看
+          </el-button> -->
+          <router-link to="/deal/borrow_datail" class="block blue">查看</router-link>
+          <router-link to="/dashboard" class="block blue">放款详情</router-link>
+          <router-link to="/dashboard" class="block blue">还款详情</router-link>
         </template>
       </el-table-column>
-
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
