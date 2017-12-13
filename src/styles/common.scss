@@ -121,8 +121,11 @@ h3 {
   padding: 10px 0;
 }
 /*
-* 弹性盒水平垂直居中
+* display属性：block；弹性盒水平垂直居中
 */
+.block {
+  display: block;
+}
 .flex-center {
   display: flex;
   justify-content: center;
@@ -143,4 +146,7 @@ h3 {
 //
 .blue {
   color: #1E7BE2;
+  &:hover {
+    color: #FA5559;
+  }
 }
