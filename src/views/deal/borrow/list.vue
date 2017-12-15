@@ -152,7 +152,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" align="center" label="还款方式">
+      <el-table-column width="150px" align="center" label="还款方式">
         <template scope="scope">
           <span>一次性还本付息</span>
         </template>
@@ -183,13 +183,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="100">
+      <el-table-column align="center" label="操作" width="200">
         <template scope="scope">
-          <!-- <el-button size="" type="success" @click="handleModifyStatus(scope.row)">查看
-          </el-button> -->
-          <router-link to="/deal/borrow_datail" class="block blue">查看</router-link>
-          <router-link to="/dashboard" class="block blue">放款详情</router-link>
-          <router-link to="/dashboard" class="block blue">还款详情</router-link>
+          <router-link to="/deal/borrow_datail" class="blue">查看</router-link>
+          <router-link to="/dashboard" class="blue">放款详情</router-link>
+          <router-link to="/dashboard" class="blue">还款详情</router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -201,7 +199,7 @@
     </div>
   </div>
 </template>
-
+<script src="vue.js" charset="utf-8"></script>
 <script>
 import { fetchList, fetchPv } from '@/api/article'
 import waves from '@/directive/waves/index.js' // 水波纹指令
@@ -453,7 +451,7 @@ export default {
 }
 </script>
 <style media="screen">
-  .el-row {
+  /*.el-row {
     margin-bottom: 0;
-  }
+  }*/
 </style>
