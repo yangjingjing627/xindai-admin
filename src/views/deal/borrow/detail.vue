@@ -11,16 +11,16 @@
             <el-col :span="24">
               <el-row class="border-top border-bottom border-left">
                 <el-col :span="4">
-                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title">姓名</div>
-                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title">钱包地址</div>
+                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title weight-500">姓名</div>
+                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title weight-500">钱包地址</div>
                 </el-col>
                 <el-col :span="8">
                   <div class="flex-center h40 g3 f14  border-right border-bottom h40">李雷</div>
                   <div class="flex-center h40 g3 f14  border-right">££££££££</div>
                 </el-col>
                 <el-col :span="4">
-                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title">借款方ID</div>
-                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title"></div>
+                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title weight-500">借款方ID</div>
+                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title weight-500"></div>
                 </el-col>
                 <el-col :span="8">
                   <div class="flex-center h40 g3 f14  border-right border-bottom h40">¥¥¥¥¥¥¥¥</div>
@@ -40,16 +40,16 @@
             <el-col :span="24">
               <el-row class="border-top border-bottom border-left">
                 <el-col :span="4">
-                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title">姓名</div>
-                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title">钱包地址</div>
+                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title weight-500">姓名</div>
+                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title weight-500">钱包地址</div>
                 </el-col>
                 <el-col :span="8">
                   <div class="flex-center h40 g3 f14  border-right border-bottom h40">李雷</div>
                   <div class="flex-center h40 g3 f14  border-right">££££££££</div>
                 </el-col>
                 <el-col :span="4">
-                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title">借款方ID</div>
-                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title"></div>
+                  <div class="flex-center h40 g3 f14 border-right border-bottom bg-title weight-500">借款方ID</div>
+                  <div class="flex-center h40 g3 f14 border-right grid-content bg-title weight-500"></div>
                 </el-col>
                 <el-col :span="8">
                   <div class="flex-center h40 g3 f14  border-right border-bottom h40">¥¥¥¥¥¥¥¥</div>
