@@ -30,6 +30,7 @@
         :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
+    <create-user :createUser="createUser" v-on:updateVisible="updateVisible"></create-user>
   </div>
 </template>
 
@@ -37,6 +38,7 @@
 import { fetchList, fetchPv } from '@/api/article'
 import waves from '@/directive/waves/index.js' // 水波纹指令
 import { parseTime } from '@/utils'
+import CreateUser from './user.create.vue'
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: '中国' },
@@ -128,7 +130,11 @@ export default {
       dialogPvVisible: false,
       pvData: [],
       showAuditor: false,
-      tableKey: 0
+      tableKey: 0,
+      createUser: {
+        dialogTitle: '创建用户',
+        visible: false
+      }
     }
   },
   filters: {
@@ -147,10 +153,16 @@ export default {
   created() {
     this.getList()
   },
+  components: {
+    CreateUser
+  },
   methods: {
     /*
 
     */
+    updateVisible(flag) {
+      this.createUser.visible = flag
+    },
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
@@ -197,6 +209,7 @@ export default {
       this.listQuery.end = parseInt((+time[1] + 3600 * 1000 * 24) / 1000)
     },
     handleModifyStatus(row, status) {
+      this.createUser.visible = true
       this.$message({
         message: '操作成功',
         type: 'success'
