@@ -20,7 +20,7 @@
       <el-table-column align="center" label="操作" width="150">
         <template scope="scope">
           <el-button size="small" type="primary" icon="el-icon-edit" v-waves @click="handleModifyStatus(scope.row)">编辑</el-button>
-          <el-button size="small" type="primary" icon="el-icon-delete" @click="handleModifyStatus(scope.row)">删除</el-button>
+          <el-button size="small" type="primary" icon="el-icon-delete" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

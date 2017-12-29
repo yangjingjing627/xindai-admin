@@ -15,7 +15,7 @@ import Input from './input'
 import HsySelect from './select'
 import goBack from './goback'
 import HsyLoading from './loading'
-import HsyNotify from './notify/notify'
+// import HsyNotify from './notify/notify'
 import Dialog from './dialog'
 import HsyPagination from './pagination'
 
@@ -43,9 +43,8 @@ const install = function(Vue, _opts = {}) {
   Vue.prototype.$alert = MessageBox.alert
   Vue.prototype.$confirm = MessageBox.confirm
   Vue.prototype.$prompt = MessageBox.prompt
-  // Vue.prototype.$notify = Notification
   Vue.prototype.$message = Message
-  Vue.$notify = Vue.prototype.$notify = new HsyNotify()
+  // Vue.$notify = Vue.prototype.$notify = new HsyNotify()
 
 }
 
