@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-  name: 'hsy-dialog',
+  name: 'admin-dialog',
   props: {
     visible: Boolean,
     title: String
@@ -28,7 +28,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-// @import 'scss/variables.scss';
+@import 'scss/variables.scss';
 .hsy-dialog-bg {
   position: absolute;
   top: 0;
@@ -40,10 +40,9 @@ export default {
  }
  .hsy-dialog {
   width: 520px;
-  // height: 730px;
   max-height: 70%;
   overflow: scroll;
-  // border: 1px solid $border-color;
+  border: 1px solid $border-color;
   border-radius: 4px;
   text-align: center;
   background: #fff;
@@ -51,12 +50,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  z-index: 9999;
   .main {
-    // position: absolute;
-    // top: 35px;
-    // right: 0;
-    // bottom: 64px;
-    // left: 0;
     overflow: auto;
     padding-bottom: 10px;
   }
@@ -65,10 +60,10 @@ export default {
     font-size: 14px;
     line-height: 20px;
     padding:7px 0;
-    // color: $font-color;
+    color: $font-color;
     font-weight: bolder;
     width: 100%;
-    // border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
   }
   .close {
     position: absolute;
@@ -90,10 +85,6 @@ export default {
     }
   }
   .footer {
-    // position: absolute;
-    // right: 0;
-    // bottom: 36px;
-    // left: 0;
     text-align: center;
     margin: 20px auto;
     .button {

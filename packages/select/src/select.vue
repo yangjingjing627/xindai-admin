@@ -21,7 +21,7 @@
 </template>
 <script>
 export default {
-  name: 'hsy-select',
+  name: 'admin-select',
   data() {
     return {
       viewLabel: true,
@@ -56,12 +56,12 @@ export default {
 }
 </script>
 <style lang="scss">
-// @import 'scss/variables.scss';
+@import 'scss/variables.scss';
 .header-select{
   height: 30px;
   line-height: 30px;
   font-size: 14px;
-  // color: $font-color;
+  color: $font-color;
   label{
     display: block;
     padding-right: 13px;
@@ -100,19 +100,19 @@ export default {
     height: 20px;
     top: 5;
     left: 0;
-    // background: $primary;
+    background: $primary;
   }
 }
 .el-select-dropdown__item {
     padding: 6px 10px;
-    // color: $font-color;
+    color: $font-color;
     height: 30px;
     box-sizing: border-box;
     cursor: pointer;
 }
 .el-select-dropdown__item.selected.hover {
   background-color: #fff;
-  // color: $font-color;
+  color: $font-color;
   &:after{
     position: absolute;
     content: "";
@@ -120,16 +120,16 @@ export default {
     height: 20px;
     top: 5;
     left: 0;
-    // background: $primary;
+    background: $primary;
   }
 }
 .el-select-dropdown__item.selected {
-  // color: $font-color;
-  // background-color: $danger;
+  color: $font-color;
+  background-color: $danger;
 }
 .el-select-dropdown__item.selected.hover {
-    // color: $font-color;
-    // background-color: $danger;
+    color: $font-color;
+    background-color: $danger;
 }
 .el-select-dropdown {
     border: 1px solid #DEDEDE;

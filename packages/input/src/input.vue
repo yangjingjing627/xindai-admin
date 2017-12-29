@@ -25,7 +25,7 @@
 </template>
 <script>
 export default {
-  name: 'hsy-input',
+  name: 'admin-input',
   data() {
     return {
       viewLabel: true,
@@ -63,12 +63,12 @@ export default {
 }
 </script>
 <style lang="scss">
-// @import 'scss/variables.scss';
+@import 'scss/variables.scss';
 .header-input{
   height: 30px;
   line-height: 30px;
   font-size: 14px;
-  // color: $font-color;
+  color: $font-color;
   label{
     display: block;
     padding-right: 13px;

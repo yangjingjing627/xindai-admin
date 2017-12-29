@@ -13,7 +13,7 @@
 </template>
 <script>
 export default {
-  name: 'hsy-loading',
+  name: 'admin-loading',
   data () {
     return {
     }

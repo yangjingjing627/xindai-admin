@@ -20,7 +20,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-// @import 'scss/variables.scss';
+@import 'scss/variables.scss';
 // $iconImgUrl:'../../../src/assets/img';
 
 .go-back{
@@ -31,7 +31,7 @@ export default {
     width: 50px;
     padding-left: 15px;
     position: relative;
-    // color: $primary-font;
+    color: $primary-font;
     height: 20px;
     line-height: 20px;
     &:after{
