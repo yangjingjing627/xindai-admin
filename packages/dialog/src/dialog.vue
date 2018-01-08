@@ -30,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 @import 'scss/variables.scss';
 .hsy-dialog-bg {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;

@@ -14,7 +14,7 @@ import {
 import Input from './input'
 import HsySelect from './select'
 import goBack from './goback'
-import HsyLoading from './loading'
+// import HsyLoading from './loading'
 // import HsyNotify from './notify/notify'
 import Dialog from './dialog'
 import HsyPagination from './pagination'
@@ -23,8 +23,7 @@ const VERSION = '0.0.1'
 
 const install = function(Vue, _opts = {}) {
   if (install.installed) return
-  Vue.use(Loading.directive)
-
+  // Vue.use(Loading.directive)
   Vue.use(Pagination)
   Vue.use(Button)
   Vue.use(Select)
@@ -35,10 +34,10 @@ const install = function(Vue, _opts = {}) {
   Vue.component(Input.name, Input)
   Vue.component(HsySelect.name, HsySelect)
   Vue.component(goBack.name, goBack)
-  Vue.component(HsyLoading.name, HsyLoading)
+  // Vue.component(HsyLoading.name, HsyLoading)
   Vue.component(Dialog.name, Dialog)
   Vue.component(HsyPagination.name, HsyPagination)
-  Vue.prototype.$loading = Loading.service
+  // Vue.prototype.$loading = Loading.service
   Vue.prototype.$msgbox = MessageBox
   Vue.prototype.$alert = MessageBox.alert
   Vue.prototype.$confirm = MessageBox.confirm
