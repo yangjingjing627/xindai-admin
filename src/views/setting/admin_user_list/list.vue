@@ -4,7 +4,7 @@
       <el-button class="filter-item" type="primary" v-waves>新增管理员</el-button>
     </div>
 
-    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 550px;">
+    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row style="width: 600px;">
       <el-table-column width="200" align="center" label="登录名">
         <template scope="scope">
           <span>韩某某</span>
@@ -17,7 +17,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="150">
+      <el-table-column align="center" label="操作" width="200">
         <template scope="scope">
           <el-button size="small" type="primary" icon="el-icon-edit" v-waves @click="handleModifyStatus(scope.row)">编辑</el-button>
           <el-button size="small" type="primary" icon="el-icon-delete" @click="handleDelete(scope.row)">删除</el-button>
