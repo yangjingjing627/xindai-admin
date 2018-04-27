@@ -63,8 +63,8 @@
     </el-row>
     <div class="">
       <h3 class="g3 f16 border-bottom">基本信息</h3>
-      <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row >
-      <!-- <el-table border fit highlight-current-row > -->
+      <!-- <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row > -->
+      <el-table :data="list" border fit highlight-current-row >
         <el-table-column align="center" label="借款编号" width="120">
           <template scope="scope">
             <span>{{ scope.row.borrowId }}</span>
